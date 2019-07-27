@@ -8,9 +8,8 @@ ext {
 
     // App dependencies
     appCompat = '1.1.0-rc01'
-    supportLibraryVersion = '27.1.1'
     playService = '17.0.0'
-    workManager = '2.0.1'
+    workManager = '2.1.0'
 
     glideVersion = '4.7.1'
     gsonVersion = '2.8.5'
@@ -27,11 +26,9 @@ ext {
     // Testing dependencies
     junitVersion = '4.12'
     robolectricVersion = '4.2'
-    mockitoVersion = '2.22.0'
+    mockitoVersion = '3.0.0'
     kotlinMockitoVersion = '2.1.0'
     powerMockito = '2.0.0'
-    runnerVersion = '1.0.2'
-    rulesVersion = '1.0.2'
-    espressoVersion = '3.0.2'
+    espressoVersion = '3.1.0'
     assertJVersion = '3.11.1'
 }

@@ -7,6 +7,8 @@
 
 -dontobfuscate
 
+-keep class androidx.work.** { *; }
+
 # Crashlytic
 -keepattributes *Annotation*
 -keepattributes SourceFile,LineNumberTable

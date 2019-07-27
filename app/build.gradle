@@ -19,7 +19,7 @@ android {
         versionName "19.07.03"
         multiDexEnabled true
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -31,6 +31,7 @@ android {
             testCoverageEnabled true
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules-debug.pro'
+            testProguardFile 'proguard-rules-debug-test.pro'
         }
     }
 
@@ -112,18 +113,22 @@ dependencies {
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$rootProject.ext.kotlinMockitoVersion"
 
     // Espresso UI Testing dependencies.
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$rootProject.ext.espressoVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$rootProject.ext.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.ext.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$rootProject.ext.espressoVersion"
 
-    // Android Testing Support Library's runner and rules
-    androidTestImplementation "com.android.support.test:runner:$rootProject.ext.runnerVersion"
-    androidTestImplementation "com.android.support.test:rules:$rootProject.ext.rulesVersion"
+    androidTestImplementation "org.mockito:mockito-android:$rootProject.ext.mockitoVersion"
+
+    // Android Testing
+    androidTestImplementation 'androidx.test:core:1.2.0'
+    androidTestImplementation "androidx.test:runner:1.2.0"
+    androidTestImplementation "androidx.test:rules:1.2.0"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
 
     // WorkManager test
     androidTestImplementation "androidx.work:work-testing:$workManager"
 
-    implementation "com.android.support.test.espresso:espresso-idling-resource:$rootProject.ext.espressoVersion"
+    implementation "androidx.test.espresso:espresso-idling-resource:$rootProject.ext.espressoVersion"
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.ext.kotlinVersion"
@@ -185,10 +190,10 @@ kapt {
 
 /*
 Resolves dependency versions across test and production APKs, specifically, transitive
-dependencies. This is required since Espresso internally has a dependency on support-annotations.
+dependencies. This is required since Espresso internally has a dependency on AndroidX-annotations.
 */
 configurations.all {
-    resolutionStrategy.force "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
+    resolutionStrategy.force "androidx.annotation:annotation:1.0.0"
 }
 
 apply plugin: 'com.google.gms.google-services'
